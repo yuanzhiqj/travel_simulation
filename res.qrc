@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/map.jpg</file>
+        <file>database.txt</file>
+        <file>sche.txt</file>
+    </qresource>
+</RCC>

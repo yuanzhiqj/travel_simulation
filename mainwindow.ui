@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1040</width>
+    <height>633</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>258</width>
+      <height>556</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="add_traveler_button">
+       <property name="text">
+        <string>添加旅客</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>当前旅客：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="current_traveler_comboBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>选择策略：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="strategy_comboBox">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>出发地：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="start_comboBox">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>北京</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>上海</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>深圳</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>杭州</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>西安</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>哈尔滨</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>昆明</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>成都</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>桂林</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>拉萨</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>乌鲁木齐</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>台北</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>香港</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>澳门</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>目的地：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="destination_comboBox">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>北京</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>上海</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>深圳</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>杭州</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>西安</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>哈尔滨</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>昆明</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>成都</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>桂林</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>拉萨</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>乌鲁木齐</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>台北</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>香港</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>澳门</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="choosecity_button">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>选择途径城市</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>出发时间：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="start_time">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="currentSection">
+          <enum>QDateTimeEdit::NoSection</enum>
+         </property>
+         <property name="displayFormat">
+          <string>yyyy/M/d H:mm</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>截止时间：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="end_time">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="displayFormat">
+          <string>yyyy/M/d H:mm</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>出行方案：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="pathList">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>254</width>
+          <height>190</height>
+         </rect>
+        </property>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>251</width>
+           <height>191</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>风险值：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="minRisk_label">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>预计时间：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="predictTime_lineEdit"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>已用时间:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="usedtime_lineEdit">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="test_button">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>580</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>test</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="mapwidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>731</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/res/map.jpg);</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1040</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>setting</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
