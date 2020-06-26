@@ -67,7 +67,7 @@ void MainWindow::init()
 
     connect(ui->start_comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(getStart()));
     connect(ui->destination_comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(getDestination()));
-    connect(ui->strategy_comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(getStrategy()));
+    connect(ui->strategy_comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(changeStrategy()));
 
     //
     connect(ui->test_button,&QPushButton::clicked,this,&MainWindow::getPredictTime);
@@ -96,6 +96,8 @@ void MainWindow::addTraveler()
     traveler_list[travelers-1]->stragety = 0;
     traveler_list[travelers-1]->isClicked = false;
     traveler_list[travelers-1]->usedTime = QDateTime(QDate(1, 1, 1), QTime(0, 0, 0, 0));
+    traveler_list[travelers-1]->startTime = QDateTime::currentDateTime();
+    traveler_list[travelers-1]->deadlineTime = QDateTime::currentDateTime();
 }
 
 void MainWindow::chooseCity()
@@ -121,6 +123,8 @@ void MainWindow::changeTraveler()
         ui->destination_comboBox->setEnabled(false);
         ui->strategy_comboBox->setEnabled(false);
         ui->test_button->setEnabled(false);
+        ui->start_time->setDateTime(traveler_list[cur_travel]->startTime);
+        ui->end_time->setDateTime(traveler_list[cur_travel]->deadlineTime);
         showTime();
         getPredictTime();
         showInfo();
@@ -131,6 +135,8 @@ void MainWindow::changeTraveler()
         ui->destination_comboBox->setEnabled(true);
         ui->strategy_comboBox->setEnabled(true);
         ui->test_button->setEnabled(true);
+        ui->start_time->setDateTime(traveler_list[cur_travel]->startTime);
+        ui->end_time->setDateTime(traveler_list[cur_travel]->deadlineTime);
         showTime();
         getPredictTime();
         showInfo();
@@ -148,9 +154,13 @@ void MainWindow::getDestination()
 }
 
 //获取策略
-void MainWindow::getStrategy()
+void MainWindow::changeStrategy()
 {
     traveler_list[cur_travel]->stragety = ui->strategy_comboBox->currentIndex();
+    if(traveler_list[cur_travel]->stragety == 0)
+        ui->end_time->setEnabled(false);
+    else
+        ui->end_time->setEnabled(true);
 }
 
 
@@ -166,6 +176,8 @@ void MainWindow::updateUi()
         ui->destination_comboBox->setEnabled(false);
         ui->strategy_comboBox->setEnabled(false);
         ui->test_button->setEnabled(false);
+        ui->start_time->setDateTime(traveler_list[cur_travel]->startTime);
+        ui->end_time->setDateTime(traveler_list[cur_travel]->deadlineTime);
         showTime();
         getPredictTime();
         showInfo();
@@ -176,6 +188,8 @@ void MainWindow::updateUi()
         ui->destination_comboBox->setEnabled(true);
         ui->strategy_comboBox->setEnabled(true);
         ui->test_button->setEnabled(true);
+        ui->start_time->setDateTime(traveler_list[cur_travel]->startTime);
+        ui->end_time->setDateTime(traveler_list[cur_travel]->deadlineTime);
 
         showTime();
         getPredictTime();
@@ -302,7 +316,12 @@ void MainWindow::test()
     }
     else
     {
-        qDebug() << "当前策略：限时最小风险";
+        traveler_list[cur_travel]->deadlineTime = ui->end_time->dateTime();
+        qDebug() << "当前策略：限时最小风险" << " 截止时间" << traveler_list[cur_travel]->deadlineTime;
+        double min = traveler_list[cur_travel]->min_risk_limit();
+        QString str = QString("%1").arg(min);
+        ui->minRisk_label->setText(str);
+        showInfo();
     }
 
 }

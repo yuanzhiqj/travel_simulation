@@ -39,7 +39,7 @@ private slots:
     void changeTraveler();      //更改乘客
     void getStart();            //获得起始地点
     void getDestination();      //获得终点
-    void getStrategy();         //获得当前策略
+    void changeStrategy();      //改变当前策略
     void test();                //
     void updateUi();            //更新UI界面
     void showTime();            //显示当前已用时间

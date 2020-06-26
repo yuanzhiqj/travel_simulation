@@ -22,6 +22,7 @@ public:
     QString getInfo();  //获得最短路径信息
 
     double min_risk();
+    double min_risk_limit();
  private:
     void DFS(int,int);          //深度优先搜索最短路径
     QDateTime getTotalTime();        //获得总共需要的时间

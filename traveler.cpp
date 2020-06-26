@@ -63,6 +63,76 @@ double Traveler::min_risk()
     return min;
 
 }
+
+double Traveler::min_risk_limit()
+{
+    DFS(start,destination);
+    QTime st;
+    st.setHMS(startTime.time().hour(),startTime.time().minute(),0);
+    qDebug() << st;
+
+    long long countdown = startTime.secsTo(deadlineTime);
+    long long count = 0;
+    qDebug() << "倒计时" << countdown;
+    double min = 99999.9;
+    int min_i = total.size();
+    for(int i = 0; i < total.size(); i++)
+    {
+        count = 0;
+        double temp = 0;
+        for(int j = 0; j < total[i].size() && count < countdown; j++)
+        {
+            //qDebug() << total[i][j].begin.toString("yyyy/MM/dd hh:mm");
+            //第一条路径
+            int duration = 0;
+            if(j == 0)
+            {
+                if(total[i][j].begin < st)
+                {
+                    duration = 86400 - total[i][j].begin.secsTo(st);
+                }
+                else
+                    duration = st.secsTo(total[i][j].begin);
+
+            }
+            else
+            {
+                if(total[i][j].begin < total[i][j-1].end)
+                {
+                    duration = 86400 - total[i][j].begin.secsTo(total[i][j-1].end);
+                }
+                else
+                    duration = total[i][j-1].end.secsTo(total[i][j].begin);
+            }
+            //统计
+            count += duration;
+            count += total[i][j].spent * 3600;
+
+            qDebug() << duration;
+            double s = (double)duration;
+            s = s / 3600;
+            temp += s * Timetable::risk[total[i][j].from];
+        }
+        qDebug() << temp;
+        if(count > countdown)
+            continue;
+        if(temp < min)
+        {
+            min_path.clear();
+            min = temp;
+            min_i = i;
+            for(int k = 0; k < total[i].size(); k++)
+                min_path.push_back(total[i][k]);
+        }
+
+    }
+    if(min_i == total.size())
+        qDebug() << "限时时间内无最短路径";
+    qDebug() << min << " " << min_i;
+    totalTime = getTotalTime();
+    return min;
+}
+
 void Traveler::DFS(int cur, int des)
 {
     flag[cur] = 1;
