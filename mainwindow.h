@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
 #include <QMainWindow>
 #include "choosecity.h"
 #include <vector>
@@ -21,8 +22,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    QString testString;
     int travelers = 0;
-    int cur_travel = -1;
+    int cur_travel;
     std::vector<Traveler*> traveler_list;
     QMap<int, QString> map;
     QTimer *mstimer;
@@ -30,6 +32,9 @@ public:
 
     QDateTime getSpentTime();
     void showInfo();
+
+    int getCurTraveler();
+    static MainWindow* getMainWindow(); //获得父窗口指针
 private:
     Ui::MainWindow *ui;
     void init();    //初始化函数

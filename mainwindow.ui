@@ -266,17 +266,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTimeEdit" name="start_time">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="currentSection">
-          <enum>QDateTimeEdit::NoSection</enum>
-         </property>
-         <property name="displayFormat">
-          <string>yyyy/M/d H:mm</string>
-         </property>
-        </widget>
+        <widget class="QDateTimeEdit" name="start_time"/>
        </item>
       </layout>
      </item>
@@ -290,14 +280,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTimeEdit" name="end_time">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="displayFormat">
-          <string>yyyy/M/d H:mm</string>
-         </property>
-        </widget>
+        <widget class="QDateTimeEdit" name="end_time"/>
        </item>
       </layout>
      </item>
@@ -406,17 +389,14 @@
      <string>test</string>
     </property>
    </widget>
-   <widget class="QWidget" name="mapwidget" native="true">
+   <widget class="MapWidget" name="map" native="true">
     <property name="geometry">
      <rect>
       <x>290</x>
       <y>10</y>
-      <width>731</width>
-      <height>551</height>
+      <width>721</width>
+      <height>561</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/res/map.jpg);</string>
     </property>
    </widget>
   </widget>
@@ -438,6 +418,14 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>MapWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">mapwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

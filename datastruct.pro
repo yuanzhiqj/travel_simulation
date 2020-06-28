@@ -29,14 +29,16 @@ SOURCES += \
     choosecity.cpp \
     traveler.cpp \
     route.cpp \
-    timetable.cpp
+    timetable.cpp \
+    mapwidget.cpp
 
 HEADERS += \
         mainwindow.h \
     choosecity.h \
     traveler.h \
     route.h \
-    timetable.h
+    timetable.h \
+    mapwidget.h
 
 FORMS += \
         mainwindow.ui \

@@ -5,6 +5,13 @@
 Traveler::Traveler()
 {
     flag.resize(15);
+    arriveTime.resize(15);
+    leaveTime.resize(15);
+    for(int i = 0; i < arriveTime.size(); i++)
+    {
+        arriveTime[i] = QDateTime::currentDateTime();
+        leaveTime[i] = QDateTime::currentDateTime();
+    }
 }
 
 double Traveler::min_risk()
@@ -12,7 +19,7 @@ double Traveler::min_risk()
     DFS(start,destination);
     QTime st;
     st.setHMS(startTime.time().hour(),startTime.time().minute(),0);
-    qDebug() << st;
+    //qDebug() << st;
     double min = 99999.9;
     int min_i = total.size();
     for(int i = 0; i < total.size(); i++)
@@ -42,7 +49,7 @@ double Traveler::min_risk()
                 else
                     duration = total[i][j-1].end.secsTo(total[i][j].begin);
             }
-            qDebug() << duration;
+            //qDebug() << duration;
             double s = (double)duration;
             s = s / 3600;
             temp += s * Timetable::risk[total[i][j].from];
@@ -58,8 +65,16 @@ double Traveler::min_risk()
         }
 
     }
-    qDebug() << min << " " << min_i;
+    //qDebug() << min << " " << min_i;
+    compute_arrivelTime();
     totalTime = getTotalTime();
+
+    std::vector<Route> path = min_path;
+    for(int i = 0; i < path.size(); i++)
+    {
+        qDebug() << "path";
+        qDebug() << path[i].num;
+    }
     return min;
 
 }
@@ -174,7 +189,7 @@ void Traveler::DFS(int cur, int des)
 
 QDateTime Traveler::getTotalTime()
 {
-    long duration = 0;
+    long long duration = 0;
     long board_time = 0;
     QTime st;
     st.setHMS(startTime.time().hour(),startTime.time().minute(),0);
@@ -186,25 +201,29 @@ QDateTime Traveler::getTotalTime()
         {
             if(min_path[i].begin < st)
             {
-                duration = 86400 - min_path[i].begin.secsTo(st);
+                duration += 86400 - min_path[i].begin.secsTo(st);
             }
             else
-                duration = st.secsTo(min_path[i].begin);
+                duration += st.secsTo(min_path[i].begin);
 
         }
         else
         {
             if(min_path[i].begin < min_path[i-1].end)
             {
-                duration = 86400 - min_path[i].begin.secsTo(min_path[i-1].end);
+                duration += 86400 - min_path[i].begin.secsTo(min_path[i-1].end);
             }
             else
-                duration = min_path[i-1].end.secsTo(min_path[i].begin);
+                duration += min_path[i-1].end.secsTo(min_path[i].begin);
         }
         board_time += min_path[i].spent * 60;
+        qDebug() << "duration:" << duration << "board:" << board_time;
     }
+    int size = min_path.size();
+    long long s = startTime.secsTo(leaveTime[min_path[size-1].to]);
     int day = 0;
     int minute = duration / 60 + board_time;
+    qDebug() << "分钟" << minute;
     int hour = minute / 60;
     minute = minute % 60;
     while(hour >= 24)
@@ -224,4 +243,27 @@ QString Traveler::getInfo()
         info += Timetable::m[min_path[i].from] + "->" + Timetable::m[min_path[i].to] + min_path[i].num + "\n";
     }
     return info;
+}
+
+void Traveler::compute_arrivelTime()
+{
+    arriveTime[start] = startTime;
+    QTime st;
+    st.setHMS(startTime.time().hour(),startTime.time().minute(),0);
+    QTime lastTime = st;
+    QDateTime last = startTime;
+    int duration = 0;
+    for(int i = 0; i < min_path.size(); i++)
+    {
+        if(min_path[i].begin > lastTime)
+            duration = lastTime.secsTo(min_path[i].begin);
+        else
+            duration = 86400 - min_path[i].begin.secsTo(lastTime);
+        leaveTime[min_path[i].from] = last.addSecs(duration);
+        //qDebug() << "离开" << Timetable::m[min_path[i].from] << "的时间为" << leaveTime[min_path[i].from];
+        arriveTime[min_path[i].to] = leaveTime[min_path[i].from ].addSecs(min_path[i].spent * 3600);
+        //qDebug() << "到达" << Timetable::m[min_path[i].to] << "的时间为" << arriveTime[min_path[i].to];
+        lastTime = min_path[i].end;
+        last = arriveTime[min_path[i].to];
+    }
 }

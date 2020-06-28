@@ -3,5 +3,13 @@
         <file>res/map.jpg</file>
         <file>database.txt</file>
         <file>sche.txt</file>
+        <file>res/arrive.ico</file>
+        <file>res/car.ico</file>
+        <file>res/pause.ico</file>
+        <file>res/plane.ico</file>
+        <file>res/train.ico</file>
+        <file>res/Bus.svg</file>
+        <file>res/fly.ico</file>
+        <file>res/train.svg</file>
     </qresource>
 </RCC>

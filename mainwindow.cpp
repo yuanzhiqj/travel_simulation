@@ -8,13 +8,12 @@
 #include "QLayout"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+    QMainWindow(parent),cur_travel(-1),testString("对or错?"),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     Timetable* timetable = new Timetable();
     init();
-
 }
 
 MainWindow::~MainWindow()
@@ -236,12 +235,14 @@ void MainWindow::showTime()
     {
         QDateTime spentTime = getSpentTime();
         QDateTime predictTime = traveler_list[cur_travel]->totalTime;
+        //预计时间大于已用时间
         if(spentTime < predictTime)
         {
             ui->usedtime_lineEdit->setText(QString::number(spentTime.date().day()-1) + QString::fromWCharArray(L"天 ")
                                         + QString::number(spentTime.time().hour()) + QString::fromWCharArray(L"小时 ")
                                        + QString::number(spentTime.time().minute()) + QString::fromWCharArray(L"分钟"));
         }
+        //已用时间已经到达预计时间
         else
         {
             ui->usedtime_lineEdit->setText(QString::number(predictTime.date().day()-1) + QString::fromWCharArray(L"天 ")
@@ -293,6 +294,8 @@ void MainWindow::test()
     qDebug() << "当前旅客: " << cur_travel+1 << " 出发地: " << map[traveler_list[cur_travel]->start] <<
               " 目的地: " << map[traveler_list[cur_travel]->destination] << endl;
 
+    QDateTime testTime = curDateTime.addSecs(5420);
+    qDebug() << "测试加减法：" << curDateTime << " " << testTime;
     /*
     for(int i = 0; i < 14; i++)
     {
@@ -313,6 +316,14 @@ void MainWindow::test()
         QString str = QString("%1").arg(min);
         ui->minRisk_label->setText(str);
         showInfo();
+
+        for(int i = 0; i < traveler_list[cur_travel]->min_path.size(); i++)
+        {
+            int c = traveler_list[cur_travel]->min_path[i].from;
+            int d = traveler_list[cur_travel]->min_path[i].to;
+            qDebug() << "离开" << Timetable::m[c] << "的时间为" << traveler_list[cur_travel]->leaveTime[c];
+            qDebug() << "到达" << Timetable::m[d] << "的时间为" << traveler_list[cur_travel]->arriveTime[d];
+        }
     }
     else
     {
@@ -324,4 +335,18 @@ void MainWindow::test()
         showInfo();
     }
 
+}
+
+
+int MainWindow::getCurTraveler()
+{
+    return cur_travel;
+}
+
+MainWindow* MainWindow::getMainWindow()
+{
+    foreach(QWidget *w, qApp->topLevelWidgets())
+    if (MainWindow* mainWin = qobject_cast<MainWindow*>(w))
+            return mainWin;
+    return nullptr;
 }
